@@ -1,0 +1,10 @@
+.venv/
+.env
+CREDS.txt
+credentials.json
+token.json
+generated_images/
+reference_candidates/
+__pycache__/
+*.pyc
+.DS_Store

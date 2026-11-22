@@ -1,0 +1,136 @@
+{
+  "locations": [
+    {
+      "country": "France",
+      "region": "Île-de-France",
+      "city": "Paris",
+      "venues": [
+        "cobblestone café terrace in Montmartre with bistro chairs and croissants",
+        "sunlit balcony overlooking the Eiffel Tower",
+        "quiet bookshop alley in the Latin Quarter"
+      ]
+    },
+    {
+      "country": "Japan",
+      "region": "Kanto",
+      "city": "Tokyo",
+      "venues": [
+        "minimalist specialty coffee bar in Daikanyama",
+        "lantern-lit narrow street in Yanaka",
+        "rooftop terrace overlooking the Shibuya skyline at dusk"
+      ]
+    },
+    {
+      "country": "Japan",
+      "region": "Kansai",
+      "city": "Kyoto",
+      "venues": [
+        "traditional wooden teahouse garden in Gion with maple trees",
+        "serene bamboo grove path in Arashiyama"
+      ]
+    },
+    {
+      "country": "Italy",
+      "region": "Campania",
+      "city": "Positano",
+      "venues": [
+        "cliffside lemon-grove terrace overlooking the turquoise Amalfi Coast",
+        "pastel-colored coastal promenade by the sea"
+      ]
+    },
+    {
+      "country": "Greece",
+      "region": "Cyclades",
+      "city": "Santorini",
+      "venues": [
+        "whitewashed terrace in Oia overlooking the Aegean caldera",
+        "bougainvillea-draped stone steps"
+      ]
+    },
+    {
+      "country": "India",
+      "region": "Rajasthan",
+      "city": "Udaipur",
+      "venues": [
+        "sandstone rooftop restaurant overlooking Lake Pichola",
+        "ornate heritage courtyard with carved arches"
+      ]
+    },
+    {
+      "country": "India",
+      "region": "Goa",
+      "city": "Assagao",
+      "venues": [
+        "lush tropical boutique café with terracotta tiles and palm fronds",
+        "golden-sand beach shack lounge at sunset"
+      ]
+    },
+    {
+      "country": "Switzerland",
+      "region": "Bernese Oberland",
+      "city": "Lauterbrunnen",
+      "venues": [
+        "wooden chalet balcony overlooking snow-dusted Alpine peaks and waterfalls",
+        "scenic mountain meadow trail"
+      ]
+    },
+    {
+      "country": "United Kingdom",
+      "region": "Greater London",
+      "city": "London",
+      "venues": [
+        "pastel-row townhouse street in Notting Hill",
+        "cozy glasshouse conservatory café in Kew"
+      ]
+    },
+    {
+      "country": "United States",
+      "region": "New York",
+      "city": "New York City",
+      "venues": [
+        "cast-iron loft café window in SoHo",
+        "tree-lined pathway in Central Park during golden hour"
+      ]
+    },
+    {
+      "country": "Indonesia",
+      "region": "Bali",
+      "city": "Ubud",
+      "venues": [
+        "infinity-edge bamboo deck overlooking lush emerald rice terraces",
+        "open-air tropical spa garden"
+      ]
+    },
+    {
+      "country": "Morocco",
+      "region": "Marrakech-Safi",
+      "city": "Marrakech",
+      "venues": [
+        "tiled riad courtyard with citrus trees and a central fountain",
+        "terracotta rooftop lounge at sunset"
+      ]
+    }
+  ],
+  "outfits": [
+    "effortless ivory linen midi dress with delicate gold jewelry",
+    "tailored beige trench coat over a crisp white tee and trousers",
+    "breezy pastel sage wrap top with high-waisted cream linen pants",
+    "chic black knit top with tailored camel trousers and minimal earrings",
+    "flowy terracotta summer dress with a woven tote",
+    "relaxed powder-blue cotton button-down with classic denim",
+    "elegant burgundy silk blouse with understated gold hoops"
+  ],
+  "lighting_and_time": [
+    "soft golden-hour sunlight with warm rim light",
+    "bright, airy morning daylight with gentle shadows",
+    "soft overcast diffused daylight for clean editorial tones",
+    "warm late-afternoon sun casting gentle architectural shadows",
+    "blue-hour twilight with warm ambient café/lantern glow"
+  ],
+  "poses_and_activities": [
+    "sitting relaxed at a table holding an espresso cup, looking candidly toward the camera with a gentle smile",
+    "standing casually leaning against a railing, looking at the camera with a poised, natural expression",
+    "walking mid-stride and glancing back toward the camera with a soft, confident smile",
+    "seated comfortably enjoying the view, turning toward the camera with a warm, approachable expression"
+  ]
+}

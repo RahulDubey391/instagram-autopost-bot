@@ -1,0 +1,103 @@
+name: Generate Avatar Photos & Upload to Drive
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Custom environment/location (leave blank for random default)"
+        required: false
+        default: ""
+        type: string
+      outfit:
+        description: "Custom outfit (leave blank for random default)"
+        required: false
+        default: ""
+        type: string
+      lighting:
+        description: "Custom lighting/time of day (leave blank for random default)"
+        required: false
+        default: ""
+        type: string
+      pose:
+        description: "Custom pose/activity (leave blank for random default)"
+        required: false
+        default: ""
+        type: string
+      count:
+        description: "Number of photos to generate"
+        required: false
+        default: "1"
+        type: string
+
+  # Uncomment below to run automatically every day at 09:00 UTC:
+  # schedule:
+  #   - cron: "0 9 * * *"
+
+jobs:
+  generate-and-upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Write Google Drive OAuth files from secrets
+        env:
+          GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
+          GOOGLE_TOKEN_JSON: ${{ secrets.GOOGLE_TOKEN_JSON }}
+        run: |
+          python - << 'EOF'
+          import os
+          from pathlib import Path
+
+          creds = os.environ.get("GOOGLE_CREDENTIALS_JSON", "").strip()
+          token = os.environ.get("GOOGLE_TOKEN_JSON", "").strip()
+          if not creds or not token:
+              raise SystemExit("Missing GOOGLE_CREDENTIALS_JSON or GOOGLE_TOKEN_JSON secret.")
+          Path("credentials.json").write_text(creds, encoding="utf-8")
+          Path("token.json").write_text(token, encoding="utf-8")
+          EOF
+
+      - name: Run avatar generation & Google Drive upload
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_IMAGE_MODEL: ${{ vars.GEMINI_IMAGE_MODEL || 'gemini-2.5-flash-image' }}
+          GDRIVE_FOLDER_ID: ${{ secrets.GDRIVE_FOLDER_ID }}
+          REFERENCE_FACE_PATH: avatar/reference_face.jpg
+          OUTPUT_DIR: generated_images
+          GOOGLE_CREDENTIALS_FILE: credentials.json
+          GOOGLE_TOKEN_FILE: token.json
+          DRIVE_PUBLIC_FOR_IG: "false"
+          USE_ANTIGRAVITY_GDRIVE: "false"
+          ENABLE_INSTAGRAM_UPLOAD: "false"
+          INPUT_ENVIRONMENT: ${{ inputs.environment }}
+          INPUT_OUTFIT: ${{ inputs.outfit }}
+          INPUT_LIGHTING: ${{ inputs.lighting }}
+          INPUT_POSE: ${{ inputs.pose }}
+          INPUT_COUNT: ${{ inputs.count || '1' }}
+        run: |
+          ARGS=("--count" "${INPUT_COUNT:-1}")
+          if [ -n "$INPUT_ENVIRONMENT" ]; then ARGS+=("--environment" "$INPUT_ENVIRONMENT"); fi
+          if [ -n "$INPUT_OUTFIT" ]; then ARGS+=("--outfit" "$INPUT_OUTFIT"); fi
+          if [ -n "$INPUT_LIGHTING" ]; then ARGS+=("--lighting" "$INPUT_LIGHTING"); fi
+          if [ -n "$INPUT_POSE" ]; then ARGS+=("--pose" "$INPUT_POSE"); fi
+          python -m src.pipeline "${ARGS[@]}"
+
+      - name: Upload generated images as workflow artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-avatar-photos
+          path: generated_images/
+          retention-days: 14
